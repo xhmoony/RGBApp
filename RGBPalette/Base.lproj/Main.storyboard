@@ -81,7 +81,6 @@
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="LKB-oB-1RR">
                                         <rect key="frame" x="-2" y="0.0" width="264" height="31"/>
                                         <connections>
-                                            <action selector="randomAction" destination="BYZ-38-t0r" eventType="valueChanged" id="pbt-TS-ZV9"/>
                                             <action selector="sliderMovement" destination="BYZ-38-t0r" eventType="valueChanged" id="pHl-nd-jtt"/>
                                         </connections>
                                     </slider>
@@ -103,7 +102,7 @@
                                 <rect key="frame" x="174" y="811" width="67" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="gray" title="🎨">
-                                    <color key="baseBackgroundColor" systemColor="systemGray4Color"/>
+                                    <color key="baseBackgroundColor" red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="randomAction" destination="BYZ-38-t0r" eventType="touchUpInside" id="BdV-fQ-OQW"/>
