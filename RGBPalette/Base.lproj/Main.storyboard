@@ -49,23 +49,23 @@
                                     <constraint firstAttribute="width" constant="46.5" id="FkA-qc-LuP"/>
                                 </constraints>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="QbK-Sl-Bd2">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="QbK-Sl-Bd2">
                                 <rect key="frame" x="79" y="402.66666666666669" width="25" height="91"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1,0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gPU-bM-FRY">
-                                        <rect key="frame" x="0.0" y="0.0" width="25" height="20.333333333333332"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1,0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gPU-bM-FRY">
+                                        <rect key="frame" x="3.6666666666666714" y="0.0" width="21.333333333333332" height="20.333333333333332"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1,0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t0I-kw-vMU">
-                                        <rect key="frame" x="0.0" y="35.333333333333314" width="25" height="20.333333333333329"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1,0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t0I-kw-vMU">
+                                        <rect key="frame" x="3.6666666666666714" y="35.333333333333314" width="21.333333333333332" height="20.333333333333329"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1,0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KRC-1M-pug">
-                                        <rect key="frame" x="0.0" y="70.666666666666629" width="25" height="20.333333333333329"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1,0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KRC-1M-pug">
+                                        <rect key="frame" x="3.6666666666666714" y="70.666666666666629" width="21.333333333333332" height="20.333333333333329"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -81,6 +81,7 @@
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="LKB-oB-1RR">
                                         <rect key="frame" x="-2" y="0.0" width="264" height="31"/>
                                         <connections>
+                                            <action selector="randomAction" destination="BYZ-38-t0r" eventType="valueChanged" id="pbt-TS-ZV9"/>
                                             <action selector="sliderMovement" destination="BYZ-38-t0r" eventType="valueChanged" id="pHl-nd-jtt"/>
                                         </connections>
                                     </slider>
@@ -98,10 +99,21 @@
                                     </slider>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ysk-Yh-DXX">
+                                <rect key="frame" x="174" y="811" width="67" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" title="🎨">
+                                    <color key="baseBackgroundColor" systemColor="systemGray4Color"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="randomAction" destination="BYZ-38-t0r" eventType="touchUpInside" id="BdV-fQ-OQW"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Ysk-Yh-DXX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="174" id="0G2-IJ-YRP"/>
                             <constraint firstAttribute="trailing" secondItem="2SZ-zc-Id7" secondAttribute="trailing" constant="25" id="BYt-TF-k3o"/>
                             <constraint firstItem="2SZ-zc-Id7" firstAttribute="leading" secondItem="QbK-Sl-Bd2" secondAttribute="trailing" constant="25" id="PNA-Vl-6md"/>
                             <constraint firstItem="aVj-4H-Eki" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="Qvp-Wc-ksv"/>
@@ -113,11 +125,14 @@
                             <constraint firstItem="2SZ-zc-Id7" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="rzm-dG-3JH"/>
                             <constraint firstItem="99A-22-yb7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="25" id="shc-UE-JW4"/>
                             <constraint firstItem="aVj-4H-Eki" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="uNO-ZV-GS2"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Ysk-Yh-DXX" secondAttribute="trailing" constant="173" id="wCn-HU-xVK"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Ysk-Yh-DXX" secondAttribute="bottom" constant="20" id="xgV-aw-z3l"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="blueSlider" destination="xmS-GL-C3j" id="stk-AQ-PQr"/>
                         <outlet property="greenSlider" destination="ssH-B9-nvJ" id="w4v-gx-NcK"/>
+                        <outlet property="randomButton" destination="Ysk-Yh-DXX" id="dab-Cf-vFr"/>
                         <outlet property="redSlider" destination="LKB-oB-1RR" id="KMv-3T-7L6"/>
                         <outlet property="valueBlue" destination="KRC-1M-pug" id="cUe-1a-hQq"/>
                         <outlet property="valueForm" destination="aVj-4H-Eki" id="BsV-tD-a4o"/>

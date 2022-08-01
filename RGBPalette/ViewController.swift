@@ -20,11 +20,13 @@ class ViewController: UIViewController {
     @IBOutlet var greenSlider: UISlider!
     @IBOutlet var blueSlider: UISlider!
     
+    @IBOutlet var randomButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        valueForm.alpha = 0.3
+        valueForm.alpha = 0.5
+        valueForm.layer.cornerRadius = 15
         
         redSlider.value = 1
         redSlider.minimumTrackTintColor = .red
@@ -61,5 +63,26 @@ class ViewController: UIViewController {
         valueGreen.text = String(format: "%.2f", greenSlider.value)
         valueBlue.text = String(format: "%.2f", blueSlider.value)
     }
+    // MARK: -
+    //и еще решил поэкспериментировать
+    @IBAction func randomAction() {
+        let randomRed = CGFloat.random(in: 0...1)
+        let randomGreen = CGFloat.random(in: 0...1)
+        let randomBlue = CGFloat.random(in: 0...1)
+        
+    view.backgroundColor = UIColor(
+            red: randomRed,
+            green: randomGreen,
+            blue: randomBlue,
+            alpha: 1
+            )
+        
+    //не смог понять как сделать так что бы при нажатие на кнопку слайдер вставали соответсвенно
+    //выпавшему цвету
+        
+    //и не смог понять как сделать прозрачным фон кнопки, такой же как у valueForm,
+    //через withAlphaComponent не получается
+    }
+    
 }
 
