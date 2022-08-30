@@ -12,9 +12,10 @@ class SettingViewController: UIViewController {
 
     @IBOutlet var valueForm: UIView!
    
-    @IBOutlet var valueRed: UILabel!
-    @IBOutlet var valueGreen: UILabel!
-    @IBOutlet var valueBlue: UILabel!
+    @IBOutlet var redTextField: UITextField!
+    @IBOutlet var greenTextField: UITextField!
+    @IBOutlet var blueTextField: UITextField!
+    
     
     @IBOutlet var redSlider: UISlider!
     @IBOutlet var greenSlider: UISlider!
@@ -22,7 +23,7 @@ class SettingViewController: UIViewController {
     
     @IBOutlet var randomButton: UIButton!
     
-// MARK: - Public Properties
+// MARK: - Properties
     var delegate: SettingViewControllerDelegate!
     
     override func viewDidLoad() {
@@ -38,7 +39,7 @@ class SettingViewController: UIViewController {
 
         setColor()
         setSliders()
-        setValue(for: valueRed, valueGreen, valueBlue)
+        setValue(for: redTextField, greenTextField, blueTextField)
     }
     
 // MARK: - Actions
@@ -46,12 +47,13 @@ class SettingViewController: UIViewController {
         setColor()
         switch sender {
         case redSlider:
-            valueRed.text = string(from: redSlider)
+            redTextField.text = string(from: redSlider)
         case greenSlider:
-            valueGreen.text = string(from: greenSlider)
+            greenTextField.text = string(from: greenSlider)
         default:
-            valueBlue.text = string(from: blueSlider)
+            blueTextField.text = string(from: blueSlider)
         }
+        setColor()
     }
     
     @IBAction func SaveButtonPressed() {
@@ -59,8 +61,8 @@ class SettingViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    
-//MARK: - Private Methods
+
+//MARK: - PrivateMethods
     private func setColor() {
        view.backgroundColor = UIColor(
             red: CGFloat(redSlider.value),
@@ -70,15 +72,15 @@ class SettingViewController: UIViewController {
         )
     }
     
-    private func setValue(for values: UILabel...) {
+    private func setValue(for values: UITextField...) {
         values.forEach { value in
             switch value {
-            case valueRed:
-                valueRed.text = string(from: redSlider)
-            case valueGreen:
-                valueGreen.text = string(from: greenSlider)
+            case redTextField:
+                redTextField.text = string(from: redSlider)
+            case greenTextField:
+                greenTextField.text = string(from: greenSlider)
             default:
-                valueBlue.text = string(from: blueSlider)
+                blueTextField.text = string(from: blueSlider)
             }
         }
     }
@@ -93,6 +95,17 @@ class SettingViewController: UIViewController {
     
     private func string(from sliderMovement: UISlider) -> String {
         String(format: "%.2f", sliderMovement.value)
+    }
+    
+    private func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        alert.addAction(okAction)
+        present(alert, animated: true)
+    }
+    
+    @objc private func didTapSave() {
+        view.endEditing(true)
     }
     
     
@@ -114,9 +127,58 @@ class SettingViewController: UIViewController {
         greenSlider.value = Float.random(in: 0...1)
         blueSlider.value = Float.random(in: 0...1)
 
-        valueRed.text = String(format: "%.2f", redSlider.value)
-        valueGreen.text = String(format: "%.2f", greenSlider.value)
-        valueBlue.text = String(format: "%.2f", blueSlider.value)
+        redTextField.text = String(format: "%.2f", redSlider.value)
+        greenTextField.text = String(format: "%.2f", greenSlider.value)
+        blueTextField.text = String(format: "%.2f", blueSlider.value)
     }
 }
+
+//MARK: - Keyboard
+    extension SettingViewController: UITextFieldDelegate {
+        
+        override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+            super.touchesBegan(touches, with: event)
+            view.endEditing(true)
+        }
+        
+        func finishEditing(_ textField: UITextField) {
+            guard let text = textField.text else { return }
+            
+            if let currentValue = Float(text) {
+                switch textField {
+                case redTextField:
+                    redSlider.setValue(currentValue, animated: true)
+                case greenTextField:
+                    greenSlider.setValue(currentValue, animated: true)
+                default:
+                    blueSlider.setValue(currentValue, animated: true)
+                }
+                setColor()
+                return
+            }
+           showAlert(title: "Wrong format!", message: "Please enter correct value")
+        }
+
+        func startEditing(_ testField: UITextField) {
+            let keyboardToolBar = UIToolbar()
+            keyboardToolBar.sizeToFit()
+            testField.inputAccessoryView = keyboardToolBar
+            
+            let saveButton = UIBarButtonItem(
+                barButtonSystemItem: .done,
+                target: self,
+                action: #selector(didTapSave)
+            )
+            
+            let flexBarButton = UIBarButtonItem(
+                barButtonSystemItem: .flexibleSpace,
+                target: nil,
+                action: nil
+            )
+            
+            keyboardToolBar.items = [flexBarButton, saveButton]
+    }
+}
+        
+        
 
